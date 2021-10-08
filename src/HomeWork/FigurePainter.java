@@ -3,7 +3,7 @@ package HomeWork;
 public class FigurePainter {
     public static void main(String[] args) {
         System.out.println("1 orinak\n");
-        int i, j, k;
+        int i, j;
         for (i = 0; i < 4; i++) {
             for (j = 0; j < i + 1; j++)
 
