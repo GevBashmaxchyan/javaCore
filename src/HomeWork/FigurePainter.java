@@ -11,6 +11,25 @@ public class FigurePainter {
             System.out.println();
         }
 
+        System.out.println("\n 2 orinak\n"); {
+
+            for ( i = 0; i < 4; i++) {
+
+                for (j = 0; j <= 4 - i; j++) {
+                    System.out.print("  ");
+                }
+
+                for (int k = 0; k < i + 1; k++) {
+                    System.out.print("* ");
+                }
+
+                System.out.println();
+            }
+
+
+
+        }
+
 
         System.out.println("\n3 orinak\n");
         for ( i = 0; i <4 ; i++) {
