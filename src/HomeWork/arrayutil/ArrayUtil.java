@@ -82,10 +82,27 @@ public class ArrayUtil {
 
         System.out.println("\n 8) tpel amenamec tivy");
 
+        int max =array[0];
         for (i = 0; i < array.length ;i ++) {
+            if (array[i]>max) {
+                max= array[i];
 
+            }
+
+
+
+
+        }System.out.println(max);
+
+        System.out.println("9) tpel amenapoqr tivy ");
+        int min = array[0];
+        for (i = 0; i < array.length ; i++) {
+            if(array[i]<min){
+                min=array[i];
+            }
 
         }
+        System.out.println(min);
 
 
 
