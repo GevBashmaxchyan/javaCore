@@ -3,7 +3,7 @@ package homework.chararray;
 public class CharArray {
     public static void main(String[] args) {
 
-        char[] bolola = {'b', 'o', 'l', 'o', 'l', 'a' };
+        char[] bolola = {'b', 'o', 'l', 'o', 'l', 'a'};
         char c = 'o';
         int a = 0;
         for (char i = 0; i < bolola.length; i++) {
