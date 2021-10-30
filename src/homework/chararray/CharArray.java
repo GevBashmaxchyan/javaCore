@@ -27,11 +27,11 @@ public class CharArray {
 
         System.out.println("3)tpel ete verjanum e ly=true ete la= false");
 
-        if (bolola[bolola.length - 2] == 'l' & bolola[bolola.length - 1] == 'y') {
+        if (bolola[bolola.length - 2] == 'l' && bolola[bolola.length - 1] == 'y') {
             System.out.println(true);
 
         }
-        if (bolola[bolola.length - 2] == 'l' & bolola[bolola.length - 1] == 'a') {
+        if (bolola[bolola.length - 2] == 'l' && bolola[bolola.length - 1] == 'a') {
             System.out.println(false);
         }
 

@@ -8,7 +8,7 @@ public class ArrayExample {
         array[1] = tmp;
 
         for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i]; j++) {
+            for (int j = 0; j < i; j++) {
                 System.out.println(array[i]);
 
             }
