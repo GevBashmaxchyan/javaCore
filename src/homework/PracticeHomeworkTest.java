@@ -10,7 +10,7 @@ public class PracticeHomeworkTest {
         System.out.println("վերադարձնել true-եթե թիվը փոքր կամ հավասար է 0-ին մնացած դեպքերում  false: "+ph.lessThanOrEqualToZero(2));
         System.out.println("վերադարձնել ընդունող բուլյանի ժխտված արժեքը։ "+ph.reverseBool(true));
         int[]array1={1,2,3,4,5,6,7,5,4,6};
-        int[]array2={1,2,3,4,5,6,7,8,2,3,4,5,3};
+        int[]array2={1,2,3,4,5,6,7,8,2};
         System.out.println("ամենամեծ length-ը "+ph.maxLength(array1,array2));
 
     }
