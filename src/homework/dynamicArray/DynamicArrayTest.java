@@ -10,10 +10,19 @@ public class DynamicArrayTest {
         da.add(5);
         da.add(6);
         da.add(7);
+        da.add(8);
+        da.add(9);
+        da.add(10);
+        da.add(11);
+        da.add(12);
+        da.add(12);
+        da.add(12);
+        da.add(12);
+        da.add(15);
 
 
 
-        System.out.println("indexerordi elementy = " + da.getByIndex(8));
+        System.out.println("indexerordi elementy = " + da.getByIndex(4));
         da.print();
 
 

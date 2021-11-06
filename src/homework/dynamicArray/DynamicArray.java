@@ -14,10 +14,11 @@ public class DynamicArray {
     public void add(int value) {
         if (size == array.length - 1) {
             extend();
+            array[size++]=value;
 
         } else {
 
-            System.out.println(array[size++] = value);
+            array[size++] = value;
         }
 
 
@@ -29,9 +30,11 @@ public class DynamicArray {
     private void extend() {
 
         int[] array1 = new int[array.length + 10];
+        int c = 0;
 
 
-        for (int i = array[0]; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
+            array1[c++] = array[i];
 
         }
         array = array1;
