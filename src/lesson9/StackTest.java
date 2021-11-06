@@ -1,6 +1,6 @@
 package lesson9;
 
-public class StackDemo {
+public class StackTest {
     public static void main(String[] args) {
         Stack stack = new Stack();
         stack.push(34);
