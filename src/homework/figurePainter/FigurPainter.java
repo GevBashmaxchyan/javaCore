@@ -12,6 +12,10 @@ public class FigurPainter {
         }
     }
 
+    void figureOne(int n) {
+        figurOne(n, '*');
+    }
+
     void figureTwo(int n, char c) {
         for (int i = 0; i < n; i++) {
 

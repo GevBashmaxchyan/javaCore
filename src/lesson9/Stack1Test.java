@@ -6,19 +6,17 @@ public class Stack1Test {
         Stack mystack2 = new Stack();
 
         for (int i = 0; i < 10; i++) mystack1.push(i);
-        for (int i = 10; i <20 ; i++) mystack2.push(i);
+        for (int i = 10; i < 20; i++) mystack2.push(i);
 
         System.out.println("Coдepжимoe стека mystack1:");
         for (int i = 0; i < 10; i++)
             System.out.println(mystack1.pop());
 
-            System.out.println("Coдepжимoe стека mystack2:");
-            for (int j = 0; j < 10; j++) {
-                System.out.println(mystack2.pop());
+        System.out.println("Coдepжимoe стека mystack2:");
+        for (int j = 0; j < 10; j++) {
+            System.out.println(mystack2.pop());
 
-            }
-
-
+        }
 
 
     }

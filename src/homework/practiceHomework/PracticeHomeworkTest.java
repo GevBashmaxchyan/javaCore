@@ -1,4 +1,6 @@
-package homework;
+package homework.practiceHomework;
+
+import homework.practiceHomework.PracticeHomework;
 
 public class PracticeHomeworkTest {
     public static void main(String[] args) {

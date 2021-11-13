@@ -17,7 +17,7 @@ public class FigurePainter {
             for (i = 0; i < 4; i++) {
 
                 for (j = 0; j <= 4 - i; j++) {
-                    System.out.print("  ");
+                    System.out.print(" ");
                 }
 
                 for (int k = 0; k < i + 1; k++) {
