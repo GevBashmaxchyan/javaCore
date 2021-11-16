@@ -79,26 +79,28 @@ public class DynamicArray {
         if (index < 0 || index > size) {
             System.err.println("invalid index");
         } else {
-            array[index]=value;
+            array[index] = value;
 
         }
 
     }
-    public boolean isEmpty(){
-        if (size==0){
+
+    public boolean isEmpty() {
+        if (size == 0) {
             return true;
-        }else {
+        } else {
             return false;
         }
 
     }
 
-    public  boolean isExists(int value){
+    public boolean isExists(int value) {
         for (int i = 0; i < size; i++) {
-            if (value== array[i]){
+            if (value == array[i]) {
                 return true;
             }
-        }return false;
+        }
+        return false;
     }
 }
 

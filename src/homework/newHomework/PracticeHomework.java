@@ -14,9 +14,7 @@ public class PracticeHomework {
     }
 
     boolean isSameNum(int a, int b) {
-        if (a == b) {
-            return true;
-        } else return false;
+        return a==b;
     }
     boolean lessThanOrEqualToZero(int number) {
         if (number<=0){

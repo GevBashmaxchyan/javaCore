@@ -1,4 +1,4 @@
-package bracechecker;
+package homework.bracechecker;
 
 public class Stack {
 
@@ -24,6 +24,9 @@ public class Stack {
         } else {
             return array[size--];
         }
+    }
+    public boolean isEmpty(){
+        return size == -1;
     }
 
 }

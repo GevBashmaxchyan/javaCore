@@ -6,7 +6,7 @@ public class PracticeHomeworkTest {
         System.out.println(ph.convert(3));
         System.out.println(ph.calcAge(2));
         System.out.println(ph.nextNumber(4));
-        System.out.println(ph.isSameNum(4, 5));
+        System.out.println(ph.isSameNum(5, 5));
         System.out.println(ph.lessThanOrEqualToZero(0));
         System.out.println(ph.reverseBool(true));
         int[] array = {1, 2, 3, 4, 5};

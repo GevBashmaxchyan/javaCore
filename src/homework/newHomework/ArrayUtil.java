@@ -21,6 +21,7 @@ public class ArrayUtil {
 
         }
         System.out.println(max);
+
         System.out.println();
         System.out.println("amenapoqr tivy");
         int min = array[0];
