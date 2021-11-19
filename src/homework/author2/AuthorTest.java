@@ -14,9 +14,9 @@ public class AuthorTest {
 
 
     public static void main(String[] args) {
-        authorStorage.add(new Author("poxos","poxosyan","poxs@mail.ru",22,"male"));
-        authorStorage.add(new Author("poxosuhi","poxosyan","poxsuhi@mail.ru",23,"famale"));
-        authorStorage.add( new Author("vlo","vloyan","vlo@mail.ru",25,"male"));
+        authorStorage.add(new Author("poxos", "poxosyan", "poxs@mail.ru", 22, "male"));
+        authorStorage.add(new Author("poxosuhi", "poxosyan", "poxsuhi@mail.ru", 23, "famale"));
+        authorStorage.add(new Author("vlo", "vloyan", "vlo@mail.ru", 25, "male"));
         boolean isRun = true;
         while (isRun) {
             printComands();
@@ -49,7 +49,7 @@ public class AuthorTest {
         int minAge = Integer.parseInt(scanner.nextLine());
         System.out.println("plase input max age");
         int maxAge = Integer.parseInt(scanner.nextLine());
-        authorStorage.searchByAge(minAge,maxAge);
+        authorStorage.searchByAge(minAge, maxAge);
     }
 
     private static void printComands() {
