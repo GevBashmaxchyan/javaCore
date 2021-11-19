@@ -3,7 +3,7 @@ package homework.author2;
 import java.util.Scanner;
 
 public class AuthorTest {
-    static AuthorStorage authorStoreg = new AuthorStorage();
+    static AuthorStorage authorStorage = new AuthorStorage();
     static Scanner scanner = new Scanner(System.in);
 
     private static final String EXIT = "0";
@@ -14,9 +14,9 @@ public class AuthorTest {
 
 
     public static void main(String[] args) {
-        authorStoreg.add(new Author("poxos","poxosyan","poxs@mail.ru",22,"male"));
-        authorStoreg.add(new Author("poxosuhi","poxosyan","poxsuhi@mail.ru",23,"famale"));
-        authorStoreg.add( new Author("vlo","vloyan","vlo@mail.ru",25,"male"));
+        authorStorage.add(new Author("poxos","poxosyan","poxs@mail.ru",22,"male"));
+        authorStorage.add(new Author("poxosuhi","poxosyan","poxsuhi@mail.ru",23,"famale"));
+        authorStorage.add( new Author("vlo","vloyan","vlo@mail.ru",25,"male"));
         boolean isRun = true;
         while (isRun) {
             printComands();
@@ -35,7 +35,7 @@ public class AuthorTest {
                     searchByAge();
                     break;
                 case PRINT_AUTHOR:
-                    authorStoreg.print();
+                    authorStorage.print();
                     break;
                 default:
                     System.out.println("invalid command!");
@@ -49,7 +49,7 @@ public class AuthorTest {
         int minAge = Integer.parseInt(scanner.nextLine());
         System.out.println("plase input max age");
         int maxAge = Integer.parseInt(scanner.nextLine());
-        authorStoreg.searchByAge(minAge,maxAge);
+        authorStorage.searchByAge(minAge,maxAge);
     }
 
     private static void printComands() {
@@ -63,7 +63,7 @@ public class AuthorTest {
     private static void searachByName() {
         System.out.println("please input keyword");
         String keyword = scanner.nextLine();
-        authorStoreg.searchByname(keyword);
+        authorStorage.searchByname(keyword);
     }
 
     private static void addAuthor() {
@@ -79,7 +79,7 @@ public class AuthorTest {
         String gender = scanner.nextLine();
 
         Author author = new Author(name, surname, email, age, gender);
-        authorStoreg.add(author);
+        authorStorage.add(author);
         System.out.println("Thank you, author was added");
     }
 }
