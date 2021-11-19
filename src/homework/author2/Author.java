@@ -1,4 +1,4 @@
-package homework.author;
+package homework.author2;
 
 public class Author {
     private String name;
@@ -7,18 +7,15 @@ public class Author {
     private int age;
     private String gender;
 
-    Author() {
-    }
-
-    ;
-
-    Author(String name, String surname, String email, int age, String gender) {
+    public Author(String name, String surname, String email, int age, String gender) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.age = age;
         this.gender = gender;
+    }
 
+    public Author() {
     }
 
     public String getName() {
@@ -67,10 +64,8 @@ public class Author {
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
-                ", age=" + age +
+                ", age='" + age + '\'' +
                 ", gender='" + gender + '\'' +
                 '}';
     }
-
-
 }
