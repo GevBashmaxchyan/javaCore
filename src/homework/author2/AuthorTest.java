@@ -3,7 +3,7 @@ package homework.author2;
 import java.util.Scanner;
 
 public class AuthorTest {
-    static AuthorStoreg authorStoreg = new AuthorStoreg();
+    static AuthorStorage authorStoreg = new AuthorStorage();
     static Scanner scanner = new Scanner(System.in);
 
     private static final String EXIT = "0";
