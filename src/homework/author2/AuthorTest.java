@@ -3,6 +3,7 @@ package homework.author2;
 import java.util.Scanner;
 
 public class AuthorTest {
+    static BookStorage bookStorage = new BookStorage();
     static AuthorStorage authorStorage = new AuthorStorage();
     static Scanner scanner = new Scanner(System.in);
 
@@ -11,6 +12,9 @@ public class AuthorTest {
     private static final String SEARCH_AUTHOR = "2";
     private static final String SEARCH_AUTHOR_BY_AGE = "3";
     private static final String PRINT_AUTHOR = "4";
+    private static final String ADD_BOOK = "5";
+    private static final String PRINT_BOOKS = "6";
+    private static final String SERARCH_BOOKS_BY_TITLE = "7";
 
 
     public static void main(String[] args) {
@@ -37,11 +41,40 @@ public class AuthorTest {
                 case PRINT_AUTHOR:
                     authorStorage.print();
                     break;
+                case ADD_BOOK:
+                    addBook();
+                    break;
+                case PRINT_BOOKS:
+                    bookStorage.print();
+                    break;
+                case SERARCH_BOOKS_BY_TITLE:
+                    searchByBookTitle();
+                    break;
                 default:
                     System.out.println("invalid command!");
             }
 
         }
+    }
+
+    private static void searchByBookTitle() {
+        System.out.println("please input keyword");
+        String keyword = scanner.nextLine();
+        bookStorage.searchByBookTitle(keyword);
+    }
+
+    private static void addBook() {
+        System.out.println("please input title");
+        String title = scanner.nextLine();
+        System.out.println("please input description");
+        String description = scanner.nextLine();
+        System.out.println("please input price");
+        double price = Integer.parseInt(scanner.nextLine());
+        System.out.println("please input caunt");
+        int caunt = Integer.parseInt(scanner.nextLine());
+        Book book=new Book(title,description,price,caunt);
+        bookStorage.add(book);
+        bookStorage.print();
     }
 
     private static void searchByAge() {
@@ -58,6 +91,9 @@ public class AuthorTest {
         System.out.println("please input " + SEARCH_AUTHOR + " for search authors by name");
         System.out.println("please input " + SEARCH_AUTHOR_BY_AGE + " for search authors by age");
         System.out.println("please input " + PRINT_AUTHOR + " for print authors ");
+        System.out.println("please input " + ADD_BOOK + " for add books ");
+        System.out.println("please input " + PRINT_BOOKS + " for print books ");
+        System.out.println("please input " + SERARCH_BOOKS_BY_TITLE + " for search books by title ");
     }
 
     private static void searchByName() {
