@@ -29,7 +29,7 @@ public class AuthorTest {
                     addAuthor();
                     break;
                 case SEARCH_AUTHOR:
-                    searachByName();
+                    searchByName();
                     break;
                 case SEARCH_AUTHOR_BY_AGE:
                     searchByAge();
@@ -60,7 +60,7 @@ public class AuthorTest {
         System.out.println("please input " + PRINT_AUTHOR + " for print authors ");
     }
 
-    private static void searachByName() {
+    private static void searchByName() {
         System.out.println("please input keyword");
         String keyword = scanner.nextLine();
         authorStorage.searchByname(keyword);
