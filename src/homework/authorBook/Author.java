@@ -1,4 +1,4 @@
-package homework.author2;
+package homework.authorBook;
 
 public class Author {
     private String name;
@@ -7,12 +7,15 @@ public class Author {
     private int age;
     private String gender;
 
-    public Author(String name, String surname, String email, int age, String gender) {
+
+    public Author(String name, String surname, String email, String gender, int age) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.age = age;
         this.gender = gender;
+
+
     }
 
     public Author() {
@@ -56,7 +59,9 @@ public class Author {
 
     public void setGender(String gender) {
         this.gender = gender;
+
     }
+
 
     @Override
     public String toString() {
@@ -66,6 +71,7 @@ public class Author {
                 ", email='" + email + '\'' +
                 ", age='" + age + '\'' +
                 ", gender='" + gender + '\'' +
+
                 '}';
     }
 }

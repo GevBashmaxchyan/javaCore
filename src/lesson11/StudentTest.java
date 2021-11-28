@@ -7,7 +7,7 @@ public class StudentTest {
 
         System.out.println(student.getName());
         student.setName("poxosik");
-        System.out.println(student.getName());
+//        System.out.println(student.getName());
 
 
     }
