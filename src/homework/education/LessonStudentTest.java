@@ -117,7 +117,7 @@ public class LessonStudentTest {
                 studentStorage.add(new Student(name, surname, age, email, phone, lesson));
                 System.out.println("thenk you was student added");
             } else {
-                System.out.println("invalid email");
+                System.out.println("invalid email , please input new email");
 
             }
 
