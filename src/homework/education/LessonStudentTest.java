@@ -69,6 +69,8 @@ public class LessonStudentTest {
         Student student = studentStorage.getByEmail(email);
         if (email != null){
             studentStorage.deleteStudent(email);
+        }else {
+            System.out.println("invalid email");
         }
     }
 
@@ -78,6 +80,8 @@ public class LessonStudentTest {
         Lesson lesson =  lessonStorage.getByLessonName(lessonname);
         if (lesson!=null){
             lessonStorage.deleteLesson(lessonname);
+        }else {
+            System.out.println("invalid lesson name");
         }
     }
 
@@ -109,25 +113,33 @@ public class LessonStudentTest {
             String phone = scanner.nextLine();
 
             studentStorage.add(new Student(name,surname,age,email,phone,lesson));
+            System.out.println("thenk you was student added");
         }else {
             System.out.println("invalid lesson name ! please try again");
-            addStudent();
+
         }
 
     }
 
     private static void addLesson() {
+
         System.out.println("please input Lesson name");
         String name = scanner.nextLine();
-        System.out.println("please input duration");
-        String duration = scanner.nextLine();
-        System.out.println("please input lecturerName");
-        String lecturerName = scanner.nextLine();
-        System.out.println("please input price ");
-        int price = Integer.parseInt(scanner.nextLine());
+        Lesson lesson= lessonStorage.getByLessonName(name);
+        if (lesson==null){
+            System.out.println("please input duration");
+            String duration = scanner.nextLine();
+            System.out.println("please input lecturerName");
+            String lecturerName = scanner.nextLine();
+            System.out.println("please input price ");
+            int price = Integer.parseInt(scanner.nextLine());
 
-        lessonStorage.add(new Lesson(name, duration, lecturerName, price));
-        System.out.println("Thank you, Lesson was added");
+            lessonStorage.add(new Lesson(name, duration, lecturerName, price));
+            System.out.println("Thank you, Lesson was added");
+        }else {
+            System.out.println("please input new lesson");
+        }
+
 
     }
 }

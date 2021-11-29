@@ -79,4 +79,30 @@ public class Student {
                 ", lesson=" + lesson +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Student student = (Student) o;
+
+        if (age != student.age) return false;
+        if (name != null ? !name.equals(student.name) : student.name != null) return false;
+        if (surname != null ? !surname.equals(student.surname) : student.surname != null) return false;
+        if (email != null ? !email.equals(student.email) : student.email != null) return false;
+        if (phone != null ? !phone.equals(student.phone) : student.phone != null) return false;
+        return lesson != null ? lesson.equals(student.lesson) : student.lesson == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + age;
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (phone != null ? phone.hashCode() : 0);
+        result = 31 * result + (lesson != null ? lesson.hashCode() : 0);
+        return result;
+    }
 }

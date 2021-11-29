@@ -57,4 +57,26 @@ public class Lesson {
                 ", price=" + price +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Lesson lesson = (Lesson) o;
+
+        if (price != lesson.price) return false;
+        if (name != null ? !name.equals(lesson.name) : lesson.name != null) return false;
+        if (duration != null ? !duration.equals(lesson.duration) : lesson.duration != null) return false;
+        return lecturerName != null ? lecturerName.equals(lesson.lecturerName) : lesson.lecturerName == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (duration != null ? duration.hashCode() : 0);
+        result = 31 * result + (lecturerName != null ? lecturerName.hashCode() : 0);
+        result = 31 * result + price;
+        return result;
+    }
 }
