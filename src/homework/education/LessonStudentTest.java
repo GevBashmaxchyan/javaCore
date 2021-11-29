@@ -67,9 +67,9 @@ public class LessonStudentTest {
         System.out.println("please input email ");
         String email = scanner.nextLine();
         Student student = studentStorage.getByEmail(email);
-        if (email != null){
+        if (email != null) {
             studentStorage.deleteStudent(email);
-        }else {
+        } else {
             System.out.println("invalid email");
         }
     }
@@ -77,10 +77,10 @@ public class LessonStudentTest {
     private static void deleteLessonByName() {
         System.out.println("pelase input Lesson name ");
         String lessonname = scanner.nextLine();
-        Lesson lesson =  lessonStorage.getByLessonName(lessonname);
-        if (lesson!=null){
+        Lesson lesson = lessonStorage.getByLessonName(lessonname);
+        if (lesson != null) {
             lessonStorage.deleteLesson(lessonname);
-        }else {
+        } else {
             System.out.println("invalid lesson name");
         }
     }
@@ -88,10 +88,10 @@ public class LessonStudentTest {
     private static void printStudentsByLesson() {
         System.out.println("pelase input Lesson name ");
         String lessonname = scanner.nextLine();
-        Lesson lesson =  lessonStorage.getByLessonName(lessonname);
-        if (lesson!= null){
+        Lesson lesson = lessonStorage.getByLessonName(lessonname);
+        if (lesson != null) {
             studentStorage.print();
-        }else{
+        } else {
             System.out.println("Lesson does not exists");
         }
     }
@@ -99,25 +99,32 @@ public class LessonStudentTest {
     private static void addStudent() {
         System.out.println("please input lesson name");
         String lessonname = scanner.nextLine();
-        Lesson lesson =  lessonStorage.getByLessonName(lessonname);
-        if (lesson!=null){
-            System.out.println("please input Students name");
-            String name = scanner.nextLine();
-            System.out.println("please input Students surname");
-            String surname = scanner.nextLine();
-            System.out.println("please input Students age ");
-            int age = Integer.parseInt(scanner.nextLine());
+        Lesson lesson = lessonStorage.getByLessonName(lessonname);
+        if (lesson != null) {
             System.out.println("please input Students email");
             String email = scanner.nextLine();
-            System.out.println("please input Students phone");
-            String phone = scanner.nextLine();
+            Student student = studentStorage.getByEmail(email);
+            if (student == null) {
+                System.out.println("please input Students name");
+                String name = scanner.nextLine();
+                System.out.println("please input Students surname");
+                String surname = scanner.nextLine();
+                System.out.println("please input Students age ");
+                int age = Integer.parseInt(scanner.nextLine());
+                System.out.println("please input Students phone");
+                String phone = scanner.nextLine();
 
-            studentStorage.add(new Student(name,surname,age,email,phone,lesson));
-            System.out.println("thenk you was student added");
-        }else {
+                studentStorage.add(new Student(name, surname, age, email, phone, lesson));
+                System.out.println("thenk you was student added");
+            } else {
+                System.out.println("invalid email");
+
+            }
+
+        } else {
             System.out.println("invalid lesson name ! please try again");
-
         }
+
 
     }
 
@@ -125,8 +132,8 @@ public class LessonStudentTest {
 
         System.out.println("please input Lesson name");
         String name = scanner.nextLine();
-        Lesson lesson= lessonStorage.getByLessonName(name);
-        if (lesson==null){
+        Lesson lesson = lessonStorage.getByLessonName(name);
+        if (lesson == null) {
             System.out.println("please input duration");
             String duration = scanner.nextLine();
             System.out.println("please input lecturerName");
@@ -136,7 +143,7 @@ public class LessonStudentTest {
 
             lessonStorage.add(new Lesson(name, duration, lecturerName, price));
             System.out.println("Thank you, Lesson was added");
-        }else {
+        } else {
             System.out.println("please input new lesson");
         }
 
