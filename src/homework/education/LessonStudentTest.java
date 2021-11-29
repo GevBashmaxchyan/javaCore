@@ -15,6 +15,8 @@ public class LessonStudentTest {
     private static final String PRINT_LESSONS = "5";
     private static final String DELETE_LESSON_BY_NAME = "6";
     private static final String DELETE_STUDENT_BY_EMAIL = "7";
+    private static final String SEARCH_STUDENTS = "8";
+    private static final String SEARCH_LESSON = "9";
 
     private static void printComands() {
         System.out.println("\u001B[34m" + "please input " + EXIT + " for EXIT");
@@ -24,10 +26,15 @@ public class LessonStudentTest {
         System.out.println("please input " + PRINT_STUDENTS_BY_LESSON + " for print student by lesson");
         System.out.println("please input " + PRINT_LESSONS + " for print  lessons");
         System.out.println("please input " + DELETE_LESSON_BY_NAME + " for DELETE  lesson by name");
-        System.out.println("please input " + DELETE_STUDENT_BY_EMAIL + " for DELETE  lesson by email" + "\u001B[0m");
+        System.out.println("please input " + DELETE_STUDENT_BY_EMAIL + " for DELETE  lesson by email");
+        System.out.println("please input " + SEARCH_STUDENTS + " for search students ");
+        System.out.println("please input " + SEARCH_LESSON + " for search lesson " + "\u001B[0m");
     }
 
     public static void main(String[] args) {
+        Lesson lesson = new Lesson("java", "2jam", "Poxos", 35000);
+        studentStorage.add(new Student("poxos", "poxosyan", 22, "poxos@mail.ru", "+374777777", lesson));
+
         boolean isRun = true;
         while (isRun) {
             printComands();
@@ -57,10 +64,30 @@ public class LessonStudentTest {
                 case DELETE_STUDENT_BY_EMAIL:
                     deleteStudentByEmail();
                     break;
+                case SEARCH_STUDENTS:
+                    searchStudents();
+                    break;
+                case SEARCH_LESSON:
+                    searchLesson();
+                    break;
                 default:
                     System.out.println("Invalid Comand!");
             }
         }
+    }
+
+    private static void searchLesson() {
+        System.out.println("please input lesson name");
+        String name = scanner.nextLine();
+        lessonStorage.searchName(name);
+
+    }
+
+    private static void searchStudents() {
+        System.out.println("please input students email");
+        String email = scanner.nextLine();
+        studentStorage.searchStudents(email);
+
     }
 
     private static void deleteStudentByEmail() {
