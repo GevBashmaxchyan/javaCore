@@ -9,7 +9,6 @@ import homework.education.storage.UserStorage;
 
 import java.util.Scanner;
 
-import static homework.education.LessonStudentComands.EXIT;
 
 public class LessonStudentTest implements LessonStudentComands, UserComands {
     static StudentStorage studentStorage = new StudentStorage();
@@ -23,7 +22,7 @@ public class LessonStudentTest implements LessonStudentComands, UserComands {
             UserComands.printcomands();
             String comando = scanner.nextLine();
             switch (comando) {
-                case UserComands.EXIT2:
+                case UserComands.EXIT:
                     next = false;
                     break;
                 case REGISTER:
@@ -64,7 +63,7 @@ public class LessonStudentTest implements LessonStudentComands, UserComands {
                         LessonStudentComands.printComands1();
                         String comand = scanner.nextLine();
                         switch (comand) {
-                            case EXIT:
+                            case EXIT_COMAND:
                                 isrun = false;
                                 break;
                             case ADD_LESSON:
@@ -104,7 +103,7 @@ public class LessonStudentTest implements LessonStudentComands, UserComands {
                         String comand = scanner.nextLine();
                         switch (comand) {
 
-                            case EXIT:
+                            case EXIT_COMAND:
                                 x = false;
                                 break;
                             case ADD_LESSON:

@@ -3,7 +3,7 @@ package homework.education;
 public interface LessonStudentComands {
 
 
-    String EXIT = "0";
+    String EXIT_COMAND = "0";
     String ADD_LESSON = "1";
     String ADD_STUDENT = "2";
     String PRINT_STUDENTS = "3";
@@ -16,7 +16,7 @@ public interface LessonStudentComands {
     String CHANGE_STUDENTS = "10";
 
     static void printComands() {
-        System.out.println("\u001B[34m" + "please input " + EXIT + " for EXIT");
+        System.out.println("\u001B[34m" + "please input " + EXIT_COMAND + " for EXIT");
         System.out.println("please input " + ADD_LESSON + " for add lesson");
         System.out.println("please input " + ADD_STUDENT + " for add student");
         System.out.println("please input " + PRINT_STUDENTS + " for print student");
@@ -29,7 +29,7 @@ public interface LessonStudentComands {
         System.out.println("please input " + CHANGE_STUDENTS + " for change students " + "\u001B[0m");
     }
     static void printComands1() {
-        System.out.println("\u001B[34m" + "please input " + EXIT + " for EXIT");
+        System.out.println("\u001B[34m" + "please input " + EXIT_COMAND + " for EXIT");
         System.out.println("please input " + ADD_LESSON + " for add lesson");
         System.out.println("please input " + ADD_STUDENT + " for add student");
         System.out.println("please input " + PRINT_STUDENTS + " for print student");
