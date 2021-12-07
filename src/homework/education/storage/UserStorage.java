@@ -36,35 +36,8 @@ public class UserStorage {
         return null;
     }
 
-    public User getByPassword(String password) {
-        for (int i = 0; i < size; i++) {
-            if (users[i].getPassword().equals(password)) {
-                return users[i];
-            }
-        }
-        return null;
-    }
-
-    public String getByType() {
-        for (int i = 0; i < size; i++) {
-            if (users[i].getType().equals("admin")) {
-                return "admin";
-            } else if (users[i].getType().equals("user")) {
-                return "user";
-            }
-        }
-
-        return null;
-    }
-
-    public String getByTypeAdmin() {
 
 
-        for (int i = 0; i < size; i++) {
-            if (users[i].getType().equals("admin")) {
-                return "admin";
-            }
-        }
-        return null;
-    }
+
+
 }
