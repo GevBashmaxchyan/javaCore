@@ -55,16 +55,14 @@ public class LessonStudentTest implements LessonStudentComands, UserComands {
             System.out.println("please input your password");
             String password = scanner.nextLine();
             if (user.getPassword().equals(password)) {
-
                 if (user.getType().equals("user")) {
-
-                    boolean isrun = true;
-                    while (isrun) {
+                    boolean isRun = true;
+                    while (isRun) {
                         LessonStudentComands.printComands1();
                         String comand = scanner.nextLine();
                         switch (comand) {
                             case EXIT_COMAND:
-                                isrun = false;
+                                isRun = false;
                                 break;
                             case ADD_LESSON:
                                 addLesson();
@@ -96,15 +94,13 @@ public class LessonStudentTest implements LessonStudentComands, UserComands {
                     }
                 }
                 if (user.getType().equals("admin")) {
-
-                    boolean x = true;
-                    while (x) {
+                    boolean isRun = true;
+                    while (isRun) {
                         LessonStudentComands.printComands();
                         String comand = scanner.nextLine();
                         switch (comand) {
-
                             case EXIT_COMAND:
-                                x = false;
+                                isRun = false;
                                 break;
                             case ADD_LESSON:
                                 addLesson();
