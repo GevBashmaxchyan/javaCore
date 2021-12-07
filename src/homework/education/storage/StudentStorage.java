@@ -1,4 +1,7 @@
-package homework.education;
+package homework.education.storage;
+
+import homework.education.util.ArrayUtil;
+import homework.education.model.Student;
 
 public class StudentStorage {
     private Student[] students = new Student[10];
@@ -49,4 +52,15 @@ public class StudentStorage {
             }
         }
     }
+
+    public void printByLesson(String lessonname) {
+        for (int i = 0; i <size ; i++) {
+            if (students[i].getLesson().toString().contains(lessonname)){
+                System.out.println(students[i]);
+                break;
+            }
+        }
+    }
+
+
 }

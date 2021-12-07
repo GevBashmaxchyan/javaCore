@@ -1,6 +1,8 @@
-package homework.authorBook;
+package homework.authorBook.storage;
 
-import lesson14.B;
+import homework.authorBook.util.ArrayUtil;
+import homework.authorBook.model.Author;
+import homework.authorBook.model.Book;
 
 public class BookStorage {
     private Book[] books = new Book[10];
@@ -35,20 +37,25 @@ public class BookStorage {
 
     public void searchByAuthor(Author author) {
         for (int i = 0; i < size; i++) {
-            if (books[i].getAuthor().equals(author)) {
-                System.out.println(books[i]);
+            for (Author author1 : books[i].getAuthors()) {
+                if (author1.equals(author)) {
+                    System.out.println(books[i]);
+                }
             }
+
         }
     }
 
     public void cauntByAuthor(Author author) {
         int caunt = 0;
         for (int i = 0; i < size; i++) {
-            if (books[i].getAuthor().equals(author)) {
-                caunt++;
+            for (Author author1 : books[i].getAuthors()) {
+                if (author1.equals(author)) {
+                    caunt++;
+                }
             }
+            System.out.println("caunt of " + author.getEmail() + " authors book is " + caunt);
         }
-        System.out.println("caunt of " + author.getEmail() + " authors book is " + caunt);
     }
 
     public Book getBySerialId(String serialId) {
@@ -72,10 +79,13 @@ public class BookStorage {
 
     public void deleteByAauthor(Author author) {
         for (int i = 0; i < size; i++) {
-            if (books[i].getAuthor().equals(author)) {
-                ArrayUtil.deleteByIndex(books, i, size);
-                size--;
+            for (Author author1 : books[i].getAuthors()) {
+                if (author1.equals(author)) {
+                    ArrayUtil.deleteByIndex(books, i, size);
+                    size--;
+                }
             }
         }
     }
 }
+

@@ -7,6 +7,7 @@ public class IfSample {
         x = 10;
         y = 20;
 
+
         if (x < y)
             System.out.println("x poqr e y-ic");
 
