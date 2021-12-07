@@ -1,6 +1,6 @@
 package homework.education.storage;
 
-import homework.education.model.Lesson;
+
 import homework.education.model.User;
 
 public class UserStorage {
