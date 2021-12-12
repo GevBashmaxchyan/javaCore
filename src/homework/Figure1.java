@@ -1,6 +1,6 @@
 package homework;
 
-public class Fiure1 {
+public class Figure1 {
     public static void main(String[] args) {
 
         System.out.println("bolor elementnery");

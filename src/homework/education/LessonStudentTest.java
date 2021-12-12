@@ -7,6 +7,7 @@ import homework.education.storage.LessonStorage;
 import homework.education.storage.StudentStorage;
 import homework.education.storage.UserStorage;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 
@@ -36,15 +37,30 @@ public class LessonStudentTest implements LessonStudentComands, UserComands {
     }
 
     private static void register() {
-        System.out.println("please input user,s name,surname,email,password,type");
-        String user = scanner.nextLine();
-        String[] users = user.split(",");
-        if (users.length == 5) {
-            userStorage.add(new User(users[0], users[1], users[2], users[3], users[4]));
-            System.out.println("user added");
-        } else {
-            System.out.println("user no added");
+        System.out.println("please input email");
+        String email = scanner.nextLine();
+        User byEmail = userStorage.getByEmail(email);
+        if (byEmail == null) {
+            System.out.println("please input name");
+            String name = scanner.nextLine();
+            System.out.println("please input surname");
+            String surname = scanner.nextLine();
+            System.out.println("please input password");
+            String password = scanner.nextLine();
+            System.out.println("please input type");
+            String type = scanner.nextLine();
+            if (type.equalsIgnoreCase("user") || type.equalsIgnoreCase("admin")) {
+                userStorage.add(new User(name,surname,email,password,type));
+                System.out.println("user was registered!");
+
+            } else {
+                System.out.println("invalid type");
+            }
+        }else {
+             System.out.println("user with " + email + " already exists");
+
         }
+
     }
 
     private static void login() {
@@ -57,8 +73,7 @@ public class LessonStudentTest implements LessonStudentComands, UserComands {
             if (user.getPassword().equals(password)) {
                 if (user.getType().equals("user")) {
                     printComandsUser();
-                }
-                if (user.getType().equals("admin")) {
+                } else if (user.getType().equals("admin")) {
                     printComandsAdmin();
                 }
 
@@ -74,10 +89,10 @@ public class LessonStudentTest implements LessonStudentComands, UserComands {
     private static void printComandsAdmin() {
         boolean isRun = true;
         while (isRun) {
-            LessonStudentComands.printComands();
+            LessonStudentComands.printComandsAdmin();
             String comand = scanner.nextLine();
             switch (comand) {
-                case EXIT_COMAND:
+                case LOGOUT:
                     isRun = false;
                     break;
                 case ADD_LESSON:
@@ -119,10 +134,10 @@ public class LessonStudentTest implements LessonStudentComands, UserComands {
     private static void printComandsUser() {
         boolean isRun = true;
         while (isRun) {
-            LessonStudentComands.printComands1();
+            LessonStudentComands.printComandsUser();
             String comand = scanner.nextLine();
             switch (comand) {
-                case EXIT_COMAND:
+                case LOGOUT:
                     isRun = false;
                     break;
                 case ADD_LESSON:
