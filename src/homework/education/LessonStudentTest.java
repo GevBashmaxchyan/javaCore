@@ -71,9 +71,9 @@ public class LessonStudentTest implements LessonStudentComands, UserComands {
             System.out.println("please input your password");
             String password = scanner.nextLine();
             if (user.getPassword().equals(password)) {
-                if (user.getType().equals("user")) {
+                if (user.getType().equalsIgnoreCase("USER")) {
                     printComandsUser();
-                } else if (user.getType().equals("admin")) {
+                } else if (user.getType().equalsIgnoreCase("ADMIN")) {
                     printComandsAdmin();
                 }
 

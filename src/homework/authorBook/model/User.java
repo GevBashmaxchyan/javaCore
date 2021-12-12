@@ -1,21 +1,21 @@
-package homework.education.model;
+package homework.authorBook.model;
 
-public class User extends homework.authorBook.model.User {
+public class User {
     private String name;
     private String surname;
     private String email;
     private String password;
-    private String type;
+    private String typ;
 
     public User() {
     }
 
-    public User(String name, String surname, String email, String password, String type) {
+    public User(String name, String surname, String email, String password, String typ) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
-        this.type = type;
+        this.typ = typ;
     }
 
     public String getName() {
@@ -50,12 +50,12 @@ public class User extends homework.authorBook.model.User {
         this.password = password;
     }
 
-    public String getType() {
-        return type;
+    public String getTyp() {
+        return typ;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTyp(String typ) {
+        this.typ = typ;
     }
 
     @Override
@@ -65,7 +65,7 @@ public class User extends homework.authorBook.model.User {
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", type='" + type + '\'' +
+                ", typ='" + typ + '\'' +
                 '}';
     }
 
@@ -80,7 +80,7 @@ public class User extends homework.authorBook.model.User {
         if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        return type != null ? type.equals(user.type) : user.type == null;
+        return typ != null ? typ.equals(user.typ) : user.typ == null;
     }
 
     @Override
@@ -89,7 +89,7 @@ public class User extends homework.authorBook.model.User {
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (typ != null ? typ.hashCode() : 0);
         return result;
     }
 }
