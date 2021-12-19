@@ -1,4 +1,4 @@
-package homework;
+package homework.arrayUtilTest;
 
 public class Barev {
     public static void main(String[] args) {

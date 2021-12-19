@@ -1,16 +1,18 @@
 package homework.authorBook.model;
 
+import homework.authorBook.UserType;
+
 public class User {
     private String name;
     private String surname;
     private String email;
     private String password;
-    private String typ;
+    private UserType typ;
 
     public User() {
     }
 
-    public User(String name, String surname, String email, String password, String typ) {
+    public User(String name, String surname, String email, String password, UserType typ) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -50,11 +52,11 @@ public class User {
         this.password = password;
     }
 
-    public String getTyp() {
+    public UserType getTyp() {
         return typ;
     }
 
-    public void setTyp(String typ) {
+    public void setTyp(UserType typ) {
         this.typ = typ;
     }
 

@@ -1,5 +1,6 @@
 package homework.education;
 
+import homework.education.exception.UserNotFoundException;
 import homework.education.model.Lesson;
 import homework.education.model.Student;
 import homework.education.model.User;
@@ -7,7 +8,6 @@ import homework.education.storage.LessonStorage;
 import homework.education.storage.StudentStorage;
 import homework.education.storage.UserStorage;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 
@@ -39,8 +39,11 @@ public class LessonStudentTest implements LessonStudentComands, UserComands {
     private static void register() {
         System.out.println("please input email");
         String email = scanner.nextLine();
-        User byEmail = userStorage.getByEmail(email);
-        if (byEmail == null) {
+        try {
+            User byEmail = userStorage.getByEmail(email);
+            System.err.println("there is such a user");
+
+        } catch (UserNotFoundException e) {
             System.out.println("please input name");
             String name = scanner.nextLine();
             System.out.println("please input surname");
@@ -50,24 +53,22 @@ public class LessonStudentTest implements LessonStudentComands, UserComands {
             System.out.println("please input type");
             String type = scanner.nextLine();
             if (type.equalsIgnoreCase("user") || type.equalsIgnoreCase("admin")) {
-                userStorage.add(new User(name,surname,email,password,type));
+                userStorage.add(new User(name, surname, email, password, type));
                 System.out.println("user was registered!");
 
             } else {
                 System.out.println("invalid type");
             }
-        }else {
-             System.out.println("user with " + email + " already exists");
-
         }
+
 
     }
 
     private static void login() {
         System.out.println("please input email");
         String email = scanner.nextLine();
-        User user = userStorage.getByEmail(email);
-        if (user != null) {
+        try {
+            User user = userStorage.getByEmail(email);
             System.out.println("please input your password");
             String password = scanner.nextLine();
             if (user.getPassword().equals(password)) {
@@ -80,11 +81,13 @@ public class LessonStudentTest implements LessonStudentComands, UserComands {
             } else {
                 System.out.println("invcalid password");
             }
-        } else {
-            System.out.println("invalid email");
+        } catch (UserNotFoundException e) {
+            System.out.println(e.getMessage());
         }
 
+
     }
+
 
     private static void printComandsAdmin() {
         boolean isRun = true;
