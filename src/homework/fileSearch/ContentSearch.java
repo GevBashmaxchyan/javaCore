@@ -1,4 +1,4 @@
-package homework.FileSearch;
+package homework.fileSearch;
 
 import java.io.File;
 import java.util.Scanner;
