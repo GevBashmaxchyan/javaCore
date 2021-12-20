@@ -12,17 +12,7 @@ public class FileSearch {
         System.out.println("please input file name by search");
         String fileName = scanner.nextLine();
         File file2 = new File(file+fileName);
+        System.out.println(file2.isFile());
 
-        if (file.isDirectory()){
-            if (file2.isFile()) {
-                System.out.println(true);
-            }else {
-                System.out.println(false);
-            }
-
-
-        }else {
-            System.out.println("not isDirectory");
-        }
     }
 }

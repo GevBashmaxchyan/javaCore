@@ -30,7 +30,7 @@ public class FileUtil {
                 System.out.println(singleFile.getName() + " " + singleFile.length());
             }
         } else {
-            System.out.println("file is nor directory");
+            System.out.println("file is not directory");
         }
 
     }
@@ -44,7 +44,8 @@ public class FileUtil {
         } else {
             System.out.println("isFile");
         }
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+        try (BufferedWriter bw =
+                     new BufferedWriter(new FileWriter(file))) {
             bw.write(content);
 
         } catch (IOException e) {
