@@ -21,6 +21,8 @@ public class FileSearch {
             }
 
 
+        }else {
+            System.out.println("not isDirectory");
         }
     }
 }

@@ -6,10 +6,10 @@ import java.util.Date;
 
 public class FileExample {
     public static void main(String[] args) throws IOException {
-        String path = "C:\\Users\\User\\Desktop\\example\\example4.docx";
+        String path = "C:\\Users\\User\\Desktop\\example\\";
         File file = new File(path);
-        File newFile = new File("C:\\Users\\User\\Desktop\\example\\example44.docx");
-        file.renameTo(newFile);
+//        File newFile = new File("C:\\Users\\User\\Desktop\\example\\example44.docx");
+//        file.renameTo(newFile);
 
 //        System.out.println(file.isDirectory());
 //        System.out.println(file.exists());
@@ -31,14 +31,14 @@ public class FileExample {
 //        System.out.println(file.exists());
 
 
-//        File[] files = file.listFiles();
-//        for (File singleFile : files) {
-//            String name = singleFile.getName();
-//            if (!singleFile.isHidden() && name.contains(".")) {
-//                String[] split = name.split("\\.");
-//                System.out.println(split[split.length - 1]);
-//            }
-//        }
+        File[] files = file.listFiles();
+        for (File singleFile : files) {
+            String name = singleFile.getName();
+            if (!singleFile.isHidden() && name.contains(".")) {
+                String[] split = name.split("\\.");
+                System.out.println(split[split.length - 1]);
+            }
+        }
 
     }
 }
