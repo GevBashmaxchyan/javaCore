@@ -5,7 +5,7 @@ import java.io.*;
 public class FileUtil {
 
 
-    public void FindLines(String txtPath, String keyword) throws IOException {
+    public void FindLines(String txtPath, String keyword)  {
 
         try (BufferedReader inputStream = new BufferedReader(new FileReader(txtPath))) {
             String line = "";
