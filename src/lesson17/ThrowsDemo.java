@@ -3,7 +3,7 @@ package lesson17;
 public class ThrowsDemo {
     static void throwOne() throws IllegalAccessException {
         System.out.println("B теле метода throwOne().");
-        throw new IllegalAccessException("demostarcia");
+        throw new IllegalAccessException("демонстрация");
     }
 
     public static void main(String[] args) {

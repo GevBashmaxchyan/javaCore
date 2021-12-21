@@ -5,7 +5,7 @@ import java.io.*;
 public class FileUtil {
 
 
-    public void FindLines(String txtPath, String keyword)  {
+    public void FindLines(String txtPath, String keyword) {
 
         try (BufferedReader inputStream = new BufferedReader(new FileReader(txtPath))) {
             String line = "";
@@ -16,7 +16,7 @@ public class FileUtil {
             }
 
 
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -27,7 +27,7 @@ public class FileUtil {
         if (file.isDirectory()) {
             File[] files = file.listFiles();
             for (File singleFile : files) {
-                System.out.println(singleFile.getName() + " " + singleFile.length());
+                System.out.println(singleFile.getName() + " " + (singleFile.length() / (1024*1024))+" mb");
             }
         } else {
             System.out.println("file is not directory");

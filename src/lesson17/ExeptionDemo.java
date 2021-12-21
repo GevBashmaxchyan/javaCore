@@ -14,6 +14,7 @@ public class ExeptionDemo {
             compute(20);
         } catch (MyException e) {
             System.out.println("Пepexвaчeнo исключение: " + e);
+
         }
     }
 }
