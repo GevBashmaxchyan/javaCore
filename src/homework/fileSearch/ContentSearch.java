@@ -1,6 +1,6 @@
 package homework.fileSearch;
 
-import java.io.File;
+import java.io.*;
 import java.util.Scanner;
 
 public class ContentSearch {
@@ -8,20 +8,44 @@ public class ContentSearch {
 
     public static void main(String[] args) {
         System.out.println("please input path");
-        String path = scanner.nextLine();
-        File file = new File(path);
-        if (file.isDirectory()) {
-            System.out.println("please input keyword");
+        String pathStr = scanner.nextLine();
+        File path = new File(pathStr);
+        if (!path.exists() || path.isFile()) {
+            System.out.println("Path does not exists ");
+        } else {
+            System.out.println("please input keyword ");
             String keyword = scanner.nextLine();
-            File[] files = file.listFiles();
-            for (File singleFile : files) {
-                if (singleFile.getName().contains(keyword)) {
-                    System.out.println(singleFile.getName());
-                }
-            }
-
-
+            findFile(path, keyword);
         }
 
+    }
+
+    static void findFile(File parent, String keyword) {
+
+        for (File file : parent.listFiles()) {
+            if (file.isDirectory()) {
+                findFile(file, keyword);
+            } else {
+                if (file.getName().endsWith(".txt")) {
+                    searchKeyword(file, keyword);
+                }
+            }
+        }
+    }
+
+    private static void searchKeyword(File file, String keyword) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+            String line = "";
+            int lineNumber = 1;
+            while ((line = bufferedReader.readLine()) != null) {
+                if (line.contains(keyword)) {
+                    System.out.println(file.getAbsolutePath() + " line: " + lineNumber);
+                    break;
+                }
+                lineNumber++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

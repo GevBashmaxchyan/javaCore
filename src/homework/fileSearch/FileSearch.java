@@ -4,15 +4,34 @@ import java.io.File;
 import java.util.Scanner;
 
 public class FileSearch {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("please input path");
-        String path = scanner.nextLine();
-        File file = new File(path);
-        System.out.println("please input file name by search");
-        String fileName = scanner.nextLine();
-        File file2 = new File(file+fileName);
-        System.out.println(file2.isFile());
 
+    static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        System.out.println("please input path");
+        String pathStr = scanner.nextLine();
+        File path = new File(pathStr);
+        if (!path.exists() || path.isFile()) {
+            System.out.println("Path does not exists ");
+        } else {
+            System.out.println("please input file name ");
+            String fileName = scanner.nextLine();
+            findFile(path, fileName);
+        }
+
+    }
+
+
+    static void findFile(File parent, String fileName) {
+
+        for (File file : parent.listFiles()) {
+            if (file.isDirectory()) {
+                findFile(file, fileName);
+            } else {
+                if (file.getName().contains(fileName)) {
+                    System.out.println(file.getAbsolutePath());
+                }
+            }
+        }
     }
 }

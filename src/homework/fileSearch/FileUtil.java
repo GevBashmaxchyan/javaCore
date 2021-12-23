@@ -27,7 +27,7 @@ public class FileUtil {
         if (file.isDirectory()) {
             File[] files = file.listFiles();
             for (File singleFile : files) {
-                System.out.println(singleFile.getName() + " " + (singleFile.length() / (1024*1024))+" mb");
+                System.out.println(singleFile.getName() + " " + (singleFile.length() / (1024 * 1024)) + " mb");
             }
         } else {
             System.out.println("file is not directory");
@@ -39,7 +39,7 @@ public class FileUtil {
 
         File file = new File(path + filename);
 
-        if (!file.isFile()) {
+        if (!file.exists()) {
             file.createNewFile();
         } else {
             System.out.println("isFile");
