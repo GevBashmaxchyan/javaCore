@@ -1,19 +1,22 @@
-package homework.authorBook.storage;
+package homework.education2.education.storage;
 
-import homework.authorBook.model.User;
-import homework.authorBook.util.FileUtil;
+
+import homework.education2.education.model.User;
+import homework.education2.education.util.FileUtil;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class UserStorage {
-    private Map<String, User> userMap = new HashMap<>();
+    private Map<String,User> userMap = new HashMap<>();
+
+    
+
 
     public void add(User user) {
-        userMap.put(user.getEmail(), user);
-        FileUtil.serializeUserMap(userMap);
+        userMap.put(user.getEmail(),user);
+        FileUtil.serializeUserMap(userMap);;
     }
-
 
     public void print() {
         for (User value : userMap.values()) {
@@ -21,12 +24,15 @@ public class UserStorage {
         }
     }
 
-    public User getByEmail(String email) {
+    public User getByEmail(String email)  {
         return userMap.get(email);
+
+
+
     }
 
 
-    public void initData() {
+    public void initeData() {
         Map<String, User> userMapFromFile = FileUtil.deserializeUserMap();
         if (userMapFromFile != null) {
             userMap = userMapFromFile;

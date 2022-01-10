@@ -1,18 +1,13 @@
 package homework.authorBook;
 
 import homework.authorBook.exception.BookNotFoundException;
-import homework.authorBook.model.Author;
-import homework.authorBook.model.Book;
-import homework.authorBook.model.User;
-import homework.authorBook.storage.AuthorStorage;
-import homework.authorBook.storage.BookStorage;
-import homework.authorBook.storage.UserStorage;
+import homework.authorBook.model.*;
+import homework.authorBook.storage.*;
 import homework.authorBook.util.DateUtil;
 
 
 import java.text.ParseException;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 public class AuthorBookTest implements AuthorBookComands {
     static Scanner scanner = new Scanner(System.in);
@@ -125,6 +120,7 @@ public class AuthorBookTest implements AuthorBookComands {
 
             User user = new User(name, surname, email, password, UserType.valueOf(type.toUpperCase()));
             userStorage.add(user);
+            System.out.println("user was registered!");
 
         } else {
             System.err.println("user with " + email + " already exists");
@@ -135,7 +131,7 @@ public class AuthorBookTest implements AuthorBookComands {
 
         boolean isRun = true;
         while (isRun) {
-            AuthorBookComands.printCommands();
+            AuthorBookComands.printAdminCommands();
             String command = scanner.nextLine();
             switch (command) {
                 case LOGOUT:
@@ -207,41 +203,13 @@ public class AuthorBookTest implements AuthorBookComands {
             System.out.println("please input tags separate , ");
             String tagsStr = scanner.nextLine();
             String[] tagsToRemove = tagsStr.split(",");
-            String[] bookTags = book.getTags();
+            Set<String> bookTags = book.getTags();
             if (bookTags == null) {
-                System.err.println("Book does not have any tags to remove!!!!!");
+                System.err.println("Book does not have any tags to remove!!!");
             } else {
-                for (String tag : tagsToRemove) {
-                    boolean isExsist = false;
-                    for (String bookTag : bookTags) {
-                        if (bookTag.equals(tag)) {
-                            isExsist = true;
-                            break;
-                        }
-                    }
-                    if (!isExsist) {
-                        System.err.println(tag + " is noot exists on book" + book);
-                        return;
-                    }
-                }
-                String[] newTags = new String[bookTags.length - tagsToRemove.length];
-                int index = 0;
-                for (String bookTag : bookTags) {
-                    boolean isExsist = false;
-                    for (String toRemove : tagsToRemove) {
-                        if (bookTag.equals(toRemove)) {
-                            isExsist = true;
-                            break;
-                        }
-                    }
-                    if (!isExsist) {
-                        newTags[index++] = bookTag;
-                    }
-                }
-                book.setTags(newTags);
-
-
+                bookTags.removeAll(Arrays.asList(tagsToRemove));
             }
+
         } catch (BookNotFoundException e) {
             System.out.println(e.getMessage());
         }
@@ -261,23 +229,12 @@ public class AuthorBookTest implements AuthorBookComands {
             System.out.println("please input tags separate , ");
             String tagsStr = scanner.nextLine();
             String[] tags = tagsStr.split(",");
-            String[] bookTags = book.getTags();
+            Set<String> bookTags = book.getTags();
             if (bookTags == null) {
-                book.setTags(tags);
+                book.setTags(new HashSet<>(Arrays.asList(tags)));
                 System.out.println("tags were added!");
             } else {
-                for (String tag : tags) {
-                    for (String bookTag : bookTags) {
-                        if (tag.equals(bookTag)) {
-                            System.err.println(tag + "is dublicate please input new tags.");
-                            return;
-                        }
-                    }
-                }
-                String[] newTegs = new String[bookTags.length + tags.length];
-                System.arraycopy(bookTags, 0, newTegs, 0, bookTags.length);
-                System.arraycopy(tags, 0, newTegs, bookTags.length, tags.length);
-                book.setTags(newTegs);
+               book.setTags(new HashSet<>(Arrays.asList(tags)));
                 System.out.println("tags were added!");
             }
         } catch (BookNotFoundException e) {
@@ -287,19 +244,9 @@ public class AuthorBookTest implements AuthorBookComands {
     }
 
     private static void initData() {
-        try {
-            Author author = new Author("petros", "petrosyan", "petros@mail.com", 25, Gender.MALE, DateUtil.stringToDate("12/12/2000"));
-            Author author1 = new Author("petrosik", "petrosikyan", "petik@mail.com", 33, Gender.MALE, DateUtil.stringToDate("02/12/1999"));
-            Author author2 = new Author("petros", "petrosyan", "petros@mail.com", 33, Gender.MALE, DateUtil.stringToDate("01/01/2001"));
-            authorStorage.add(author);
-            authorStorage.add(author1);
-            authorStorage.add(author2);
-            Author[] authors = {author1, author2};
-            String[] tags = {"new", "popular", "detektiv", "lav girq"};
-            bookStorage.add(new Book("AR333", "girq1", "desc", 222, 2, authors, tags));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        authorStorage.initData();
+        bookStorage.initData();
+        userStorage.initData();
 
     }
 
@@ -308,7 +255,7 @@ public class AuthorBookTest implements AuthorBookComands {
         String email = scanner.nextLine();
         Author author = authorStorage.getByEmail(email);
         if (author != null) {
-            bookStorage.deleteByAauthor(author);
+            bookStorage.deleteByAuthor(author);
         } else {
             System.err.println("Author does nor exists");
         }
@@ -351,7 +298,7 @@ public class AuthorBookTest implements AuthorBookComands {
     private static void changeBookAuthor() {
         printAuthorsList("please choose book by serial id");
         String serialId = scanner.nextLine();
-        Book book = null;
+        Book book ;
         try {
             book = bookStorage.getBySerialId(serialId);
             printAuthorsList("please input email by author");
@@ -361,18 +308,19 @@ public class AuthorBookTest implements AuthorBookComands {
                 System.out.println("please choose authors");
                 return;
             }
-            Author[] authors = new Author[emailArray.length];
-            int index = 0;
+           Set <Author> authors = new HashSet<>();
+
             for (String email : emailArray) {
                 Author author = authorStorage.getByEmail(email);
                 if (author != null) {
-                    authors[index++] = author;
+                    authors.add(author);
                 } else {
                     System.out.println("please input correct authors email");
                     return;
                 }
             }
             book.setAuthors(authors);
+            bookStorage.serialize();
         } catch (BookNotFoundException e) {
             System.out.println(e.getMessage());
         }
@@ -397,7 +345,8 @@ public class AuthorBookTest implements AuthorBookComands {
                 author.setName(name);
                 author.setSurname(surname);
                 author.setAge(age);
-                author.setGender((gender));
+                author.setGender(gender);
+                authorStorage.serialize();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -443,12 +392,11 @@ public class AuthorBookTest implements AuthorBookComands {
             System.out.println("please choose authors");
             return;
         }
-        Author[] authors = new Author[emailArray.length];
-        int index = 0;
+        Set<Author> authors = new HashSet<>();
         for (String email : emailArray) {
             Author author = authorStorage.getByEmail(email);
             if (author != null) {
-                authors[index++] = author;
+                authors.add(author);
             } else {
                 System.out.println("please input correct authors email");
                 return;
@@ -472,7 +420,7 @@ public class AuthorBookTest implements AuthorBookComands {
             String tagsStr = scanner.nextLine();
             String[] tags = tagsStr.split(",");
 
-            Book book = new Book(serialId, title, desc, price, count, authors, tags);
+            Book book = new Book(serialId, title, desc, price, count, authors, new HashSet<>(Arrays.asList(tags)));
 
             bookStorage.add(book);
             e.printStackTrace();

@@ -7,6 +7,7 @@ import homework.education.model.User;
 public class UserStorage {
     private User[] users = new User[10];
     private int size;
+    
 
 
     public void add(User user) {

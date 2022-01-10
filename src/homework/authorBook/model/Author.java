@@ -3,9 +3,10 @@ package homework.authorBook.model;
 import homework.authorBook.Gender;
 import homework.authorBook.util.DateUtil;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Author {
+public class Author implements Serializable {
     private String name;
     private String surname;
     private String email;

@@ -1,92 +1,94 @@
 package homework.authorBook.storage;
 
 import homework.authorBook.exception.BookNotFoundException;
-import homework.authorBook.util.ArrayUtil;
 import homework.authorBook.model.Author;
 import homework.authorBook.model.Book;
+import homework.authorBook.util.FileUtil;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class BookStorage {
-    private Book[] books = new Book[10];
-    private int size = 0;
+    private List<Book> books = new LinkedList<>();
+
 
     public void add(Book book) {
-        if (size == books.length) {
-            extend();
-        }
-        books[size++] = book;
+        books.add(book);
+        serialize();
     }
 
-    private void extend() {
-        Book[] tmp = new Book[books.length + 10];
-        System.arraycopy(books, 0, tmp, 0, size);
-        books = tmp;
-    }
 
     public void print() {
-        for (int i = 0; i < size; i++) {
-            System.out.println(books[i]);
+        for (Book book : books) {
+            System.out.println(book);
         }
+
+//        Iterator<Book> iterator = books.iterator();
+//        while (iterator.hasNext()){
+//            Book book = iterator.next();
+//            System.out.println(book);
+//        }
     }
 
     public void searchByTitle(String keyword) {
-        for (int i = 0; i < size; i++) {
-            if (books[i].getTitle().contains(keyword)) {
-                System.out.println(books[i]);
+        for (Book book : books) {
+            if (book.getTitle().contains(keyword)) {
+                System.out.println(book);
             }
         }
     }
 
     public void searchByAuthor(Author author) {
-        for (int i = 0; i < size; i++) {
-            for (Author author1 : books[i].getAuthors()) {
-                if (author1.equals(author)) {
-                    System.out.println(books[i]);
-                }
+        for (Book book : books) {
+            if (book.getAuthors().contains(author)) {
+                System.out.println(book);
             }
-
         }
     }
 
     public void cauntByAuthor(Author author) {
-        int caunt = 0;
-        for (int i = 0; i < size; i++) {
-            for (Author author1 : books[i].getAuthors()) {
-                if (author1.equals(author)) {
-                    caunt++;
-                }
+        int count = 0;
+        for (Book book : books) {
+            if (book.getAuthors().contains(author)) {
+                count++;
             }
-            System.out.println("caunt of " + author.getEmail() + " authors book is " + caunt);
         }
+        System.out.println("caunt of " + author.getEmail() + " authors book is " + count);
+
     }
 
     public Book getBySerialId(String serialId) throws BookNotFoundException {
-        for (int i = 0; i < size; i++) {
-            if (books[i].getSerialId().equals(serialId)) {
-                return books[i];
+        for (Book book : books) {
+            if (book.getSerialId().equals(serialId)) {
+                return book;
             }
         }
         throw new BookNotFoundException("Book does not exists, serialid: " + serialId);
     }
 
     public void delete(Book book) {
-        for (int i = 0; i < size; i++) {
-            if (books[i].equals(book)) {
-                ArrayUtil.deleteByIndex(books, i, size);
-                size--;
-                break;
+        books.remove(book);
+        serialize();
+    }
+
+    public void deleteByAuthor(Author author) {
+        for (Book book : books) {
+            if (book.getAuthors().contains(author)) {
+                books.remove(book);
             }
+        }
+        serialize();
+    }
+
+    public void initData() {
+        List<Book> bookList = FileUtil.deserializeBooks();
+        if (bookList != null) {
+            books = bookList;
         }
     }
 
-    public void deleteByAauthor(Author author) {
-        for (int i = 0; i < size; i++) {
-            for (Author author1 : books[i].getAuthors()) {
-                if (author1.equals(author)) {
-                    ArrayUtil.deleteByIndex(books, i, size);
-                    size--;
-                }
-            }
-        }
+    public void serialize() {
+        FileUtil.serializeBooks(books);
     }
 }
 

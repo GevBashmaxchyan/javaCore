@@ -1,25 +1,23 @@
-package homework.authorBook.model;
-
-import homework.authorBook.UserType;
+package homework.education2.education.model;
 
 import java.io.Serializable;
 
-public class User  implements Serializable {
+public class User implements Serializable {
     private String name;
     private String surname;
     private String email;
     private String password;
-    private UserType typ;
+    private String type;
 
     public User() {
     }
 
-    public User(String name, String surname, String email, String password, UserType typ) {
+    public User(String name, String surname, String email, String password, String type) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
-        this.typ = typ;
+        this.type = type;
     }
 
     public String getName() {
@@ -54,12 +52,12 @@ public class User  implements Serializable {
         this.password = password;
     }
 
-    public UserType getTyp() {
-        return typ;
+    public String getType() {
+        return type;
     }
 
-    public void setTyp(UserType typ) {
-        this.typ = typ;
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override
@@ -69,7 +67,7 @@ public class User  implements Serializable {
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", typ='" + typ + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 
@@ -84,7 +82,7 @@ public class User  implements Serializable {
         if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        return typ != null ? typ.equals(user.typ) : user.typ == null;
+        return type != null ? type.equals(user.type) : user.type == null;
     }
 
     @Override
@@ -93,7 +91,7 @@ public class User  implements Serializable {
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (typ != null ? typ.hashCode() : 0);
+        result = 31 * result + (type != null ? type.hashCode() : 0);
         return result;
     }
 }

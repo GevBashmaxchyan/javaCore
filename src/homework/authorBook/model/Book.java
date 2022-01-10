@@ -1,18 +1,28 @@
 package homework.authorBook.model;
 
-import java.util.Arrays;
-import java.util.Objects;
+import java.io.Serializable;
+import java.util.Set;
 
-public class Book {
+public class Book implements Serializable {
     private String serialId;//AG1121243
     private String title;
     private String description;
     private double price;
     private int caunt;
-    private Author[] authors;
-    private String[] tags;
+    private Set<Author> authors;
+    private Set<String> tags;
 
-    public Book(String serialId, String title, String description, double price, int caunt, Author[] authors) {
+    public Book(String serialId, String title, String description, double price, int caunt, Set<Author> authors, Set<String> tags) {
+        this.serialId = serialId;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.caunt = caunt;
+        this.authors = authors;
+        this.tags = tags;
+    }
+
+    public Book(String serialId, String title, String description, double price, int caunt, Set<Author> authors) {
         this.serialId = serialId;
         this.title = title;
         this.description = description;
@@ -21,19 +31,15 @@ public class Book {
         this.authors = authors;
     }
 
-    public Book(String serialId, String title, String description, double price, int caunt, Author[] authors, String[] tags) {
-        this.serialId =serialId;
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.caunt = caunt;
-        this.authors = authors;
-        this.tags = tags;
-
+    public Book() {
     }
 
+    public String getSerialId() {
+        return serialId;
+    }
 
-    public Book() {
+    public void setSerialId(String serialId) {
+        this.serialId = serialId;
     }
 
     public String getTitle() {
@@ -68,41 +74,20 @@ public class Book {
         this.caunt = caunt;
     }
 
-    public String[] getTags() {
-        return tags;
-    }
-
-    public void setTags(String[] tags) {
-        this.tags = tags;
-    }
-
-    public String getSerialId() {
-        return serialId;
-    }
-
-    public void setSerialId(String serialId) {
-        this.serialId = serialId;
-    }
-
-    public Author[] getAuthors() {
+    public Set<Author> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(Author[] authors) {
+    public void setAuthors(Set<Author> authors) {
         this.authors = authors;
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "serialId='" + serialId + '\'' +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", caunt=" + caunt +
-                ", authors=" + Arrays.toString(authors) +
-                ", tags=" + Arrays.toString(tags) +
-                '}';
+    public Set<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<String> tags) {
+        this.tags = tags;
     }
 
     @Override
@@ -117,10 +102,8 @@ public class Book {
         if (serialId != null ? !serialId.equals(book.serialId) : book.serialId != null) return false;
         if (title != null ? !title.equals(book.title) : book.title != null) return false;
         if (description != null ? !description.equals(book.description) : book.description != null) return false;
-        // Probably incorrect - comparing Object[] arrays with Arrays.equals
-        if (!Arrays.equals(authors, book.authors)) return false;
-        // Probably incorrect - comparing Object[] arrays with Arrays.equals
-        return Arrays.equals(tags, book.tags);
+        if (authors != null ? !authors.equals(book.authors) : book.authors != null) return false;
+        return tags != null ? tags.equals(book.tags) : book.tags == null;
     }
 
     @Override
@@ -133,8 +116,21 @@ public class Book {
         temp = Double.doubleToLongBits(price);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + caunt;
-        result = 31 * result + Arrays.hashCode(authors);
-        result = 31 * result + Arrays.hashCode(tags);
+        result = 31 * result + (authors != null ? authors.hashCode() : 0);
+        result = 31 * result + (tags != null ? tags.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "serialId='" + serialId + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", caunt=" + caunt +
+                ", authors=" + authors +
+                ", tags=" + tags +
+                '}';
     }
 }
